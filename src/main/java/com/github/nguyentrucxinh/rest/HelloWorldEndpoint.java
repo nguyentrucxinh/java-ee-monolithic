@@ -4,6 +4,8 @@ import com.github.nguyentrucxinh.model.HelloWorld;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,24 +15,24 @@ public class HelloWorldEndpoint {
 
     @POST
     @Consumes({"application/xml", "application/json"})
-    public Long create(HelloWorld helloWorld) {
-        return helloWorld.getId();
+    public Response create(HelloWorld helloWorld) {
+        return Response.created(UriBuilder.fromResource(HelloWorldEndpoint.class).path(String.valueOf(helloWorld.getId())).build()).build();
     }
 
     @DELETE
     @Path("/{id:[0-9][0-9]*}")
-    public void delete(@PathParam("id") Long id) {
-        System.out.println(id);
+    public Response delete(@PathParam("id") Long id) {
+        return Response.noContent().build();
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
     @Path("/{id:[0-9][0-9]*}")
-    public HelloWorld findById(@PathParam("id") Long id) {
+    public Response findById(@PathParam("id") Long id) {
         HelloWorld helloWorld = new HelloWorld();
         helloWorld.setId(1L);
         helloWorld.setMessage("Message 1");
-        return helloWorld;
+        return Response.ok(helloWorld).build();
     }
 
     @GET
@@ -54,8 +56,8 @@ public class HelloWorldEndpoint {
     @PUT
     @Path("/{id:[0-9][0-9]*}")
     @Consumes({"application/xml", "application/json"})
-    public void update(@PathParam("id") Long id, HelloWorld helloWorld) {
-        System.out.printf(id + helloWorld.getId() + helloWorld.getMessage());
+    public Response update(@PathParam("id") Long id, HelloWorld helloWorld) {
+        return Response.noContent().build();
     }
 
 }

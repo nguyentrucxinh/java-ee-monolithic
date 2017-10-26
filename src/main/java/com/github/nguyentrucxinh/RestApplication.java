@@ -3,6 +3,6 @@ package com.github.nguyentrucxinh;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/")
-public class MainApplication extends Application {
+@ApplicationPath("/rest")
+public class RestApplication extends Application {
 }
