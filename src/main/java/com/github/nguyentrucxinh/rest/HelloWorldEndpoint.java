@@ -4,6 +4,7 @@ import com.github.nguyentrucxinh.model.HelloWorld;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class HelloWorldEndpoint {
 
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({MediaType.APPLICATION_JSON})
     public Response create(HelloWorld helloWorld) {
         return Response.created(UriBuilder.fromResource(HelloWorldEndpoint.class).path(String.valueOf(helloWorld.getId())).build()).build();
     }
@@ -26,7 +27,7 @@ public class HelloWorldEndpoint {
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/{id:[0-9][0-9]*}")
     public Response findById(@PathParam("id") Long id) {
         HelloWorld helloWorld = new HelloWorld();
@@ -36,7 +37,7 @@ public class HelloWorldEndpoint {
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<HelloWorld> listAll() {
         HelloWorld helloWorld1 = new HelloWorld();
         helloWorld1.setId(1L);
@@ -55,7 +56,7 @@ public class HelloWorldEndpoint {
 
     @PUT
     @Path("/{id:[0-9][0-9]*}")
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({MediaType.APPLICATION_JSON})
     public Response update(@PathParam("id") Long id, HelloWorld helloWorld) {
         return Response.noContent().build();
     }
