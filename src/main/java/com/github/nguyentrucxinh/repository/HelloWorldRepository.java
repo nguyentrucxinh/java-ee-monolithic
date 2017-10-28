@@ -1,6 +1,6 @@
 package com.github.nguyentrucxinh.repository;
 
-import com.github.nguyentrucxinh.model.HelloWorld;
+import com.github.nguyentrucxinh.domain.HelloWorld;
 
 import java.util.List;
 

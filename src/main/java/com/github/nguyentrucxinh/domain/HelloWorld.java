@@ -1,4 +1,4 @@
-package com.github.nguyentrucxinh.model;
+package com.github.nguyentrucxinh.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;

@@ -1,6 +1,6 @@
 package com.github.nguyentrucxinh.repository.impl;
 
-import com.github.nguyentrucxinh.model.HelloWorld;
+import com.github.nguyentrucxinh.domain.HelloWorld;
 import com.github.nguyentrucxinh.repository.HelloWorldRepository;
 
 import javax.annotation.PostConstruct;

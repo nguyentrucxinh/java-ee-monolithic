@@ -1,8 +1,7 @@
 package com.github.nguyentrucxinh.rest;
 
-import com.github.nguyentrucxinh.model.HelloWorld;
+import com.github.nguyentrucxinh.domain.HelloWorld;
 import com.github.nguyentrucxinh.repository.HelloWorldRepository;
-import com.github.nguyentrucxinh.repository.impl.HelloWorldRepositoryImpl;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
