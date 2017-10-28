@@ -21,12 +21,14 @@ public class HelloWorldEndpoint {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Response create(HelloWorld helloWorld) {
-        return Response.created(UriBuilder.fromResource(HelloWorldEndpoint.class).path(String.valueOf(helloWorld.getId())).build()).build();
+        Long id = helloWorldService.create(helloWorld);
+        return Response.created(UriBuilder.fromResource(HelloWorldEndpoint.class).path(String.valueOf(id)).build()).build();
     }
 
     @DELETE
     @Path("/{id:[0-9][0-9]*}")
     public Response delete(@PathParam("id") Long id) {
+        helloWorldService.delete(id);
         return Response.noContent().build();
     }
 
@@ -34,10 +36,7 @@ public class HelloWorldEndpoint {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/{id:[0-9][0-9]*}")
     public Response findById(@PathParam("id") Long id) {
-        HelloWorld helloWorld = new HelloWorld();
-        helloWorld.setId(1L);
-        helloWorld.setMessage("Message 1");
-        return Response.ok(helloWorld).build();
+        return Response.ok(helloWorldService.findById(id)).build();
     }
 
     @GET
@@ -50,6 +49,7 @@ public class HelloWorldEndpoint {
     @Path("/{id:[0-9][0-9]*}")
     @Consumes({MediaType.APPLICATION_JSON})
     public Response update(@PathParam("id") Long id, HelloWorld helloWorld) {
+        helloWorldService.update(id, helloWorld);
         return Response.noContent().build();
     }
 
