@@ -1,4 +1,4 @@
-package com.github.nguyentrucxinh.rest;
+package com.github.nguyentrucxinh.web.api;
 
 import com.github.nguyentrucxinh.domain.HelloWorld;
 import com.github.nguyentrucxinh.repository.HelloWorldRepository;
