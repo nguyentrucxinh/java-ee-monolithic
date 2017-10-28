@@ -1,4 +1,4 @@
-package com.github.nguyentrucxinh.exceptions;
+package com.github.nguyentrucxinh.helper.exceptions;
 
 public class ValidationException extends RuntimeException
 {

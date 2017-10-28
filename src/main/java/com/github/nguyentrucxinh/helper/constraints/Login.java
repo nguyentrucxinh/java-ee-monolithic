@@ -1,9 +1,9 @@
-package com.github.nguyentrucxinh.constraints;
+package com.github.nguyentrucxinh.helper.constraints;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,23 +12,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Constraint(validatedBy = {})
-@Size(min = 5)
-@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
-        + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
-        + "@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+@NotNull
+@Size(min = 1, max = 10)
 @ReportAsSingleViolation
 @Retention(RetentionPolicy.RUNTIME)
 @Target( {ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,
         ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR})
 @Documented
-public @interface Email
+public @interface Login
 {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    String message() default "{com.github.nguyentrucxinh.constraints.Email.message}";
+    String message() default "{com.github.nguyentrucxinh.helper.constraints.Login.message}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     // ======================================
@@ -40,6 +38,6 @@ public @interface Email
             ElementType.CONSTRUCTOR})
     public @interface List
     {
-        Email[] value();
+        Login[] value();
     }
 }

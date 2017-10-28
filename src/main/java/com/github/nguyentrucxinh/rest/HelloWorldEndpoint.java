@@ -1,18 +1,23 @@
 package com.github.nguyentrucxinh.rest;
 
 import com.github.nguyentrucxinh.model.HelloWorld;
+import com.github.nguyentrucxinh.repository.HelloWorldRepository;
+import com.github.nguyentrucxinh.repository.impl.HelloWorldRepositoryImpl;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
 @Path("/hello-world")
 public class HelloWorldEndpoint {
+
+    @Inject
+    private HelloWorldRepository helloWorldRepository;
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
@@ -39,19 +44,7 @@ public class HelloWorldEndpoint {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public List<HelloWorld> listAll() {
-        HelloWorld helloWorld1 = new HelloWorld();
-        helloWorld1.setId(1L);
-        helloWorld1.setMessage("Message 1");
-
-        HelloWorld helloWorld2 = new HelloWorld();
-        helloWorld2.setId(2L);
-        helloWorld2.setMessage("Message 2");
-
-        List<HelloWorld> helloWorlds = new ArrayList<>();
-        helloWorlds.add(helloWorld1);
-        helloWorlds.add(helloWorld2);
-
-        return helloWorlds;
+        return helloWorldRepository.findAll();
     }
 
     @PUT

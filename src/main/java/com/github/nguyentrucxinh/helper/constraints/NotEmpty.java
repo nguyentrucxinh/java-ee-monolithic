@@ -1,4 +1,4 @@
-package com.github.nguyentrucxinh.constraints;
+package com.github.nguyentrucxinh.helper.constraints;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,20 +13,20 @@ import java.lang.annotation.Target;
 
 @Constraint(validatedBy = {})
 @NotNull
-@Size(min = 1, max = 10)
+@Size(min = 1)
 @ReportAsSingleViolation
 @Retention(RetentionPolicy.RUNTIME)
 @Target( {ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,
         ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR})
 @Documented
-public @interface Login
+public @interface NotEmpty
 {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    String message() default "{com.github.nguyentrucxinh.constraints.Login.message}";
+    String message() default "{com.github.nguyentrucxinh.helper.constraints.NotEmpty.message}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     // ======================================
@@ -38,6 +38,6 @@ public @interface Login
             ElementType.CONSTRUCTOR})
     public @interface List
     {
-        Login[] value();
+        NotEmpty[] value();
     }
 }

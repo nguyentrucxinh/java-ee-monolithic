@@ -10,6 +10,14 @@ public class HelloWorld implements Serializable {
 
     private String message;
 
+    public HelloWorld() {
+    }
+
+    public HelloWorld(Long id, String message) {
+        this.id = id;
+        this.message = message;
+    }
+
     public Long getId() {
         return id;
     }
