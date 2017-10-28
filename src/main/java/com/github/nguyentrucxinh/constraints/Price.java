@@ -1,0 +1,41 @@
+package com.github.nguyentrucxinh.constraints;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.DecimalMin;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Constraint(validatedBy = {})
+@DecimalMin("10")
+@ReportAsSingleViolation
+@Retention(RetentionPolicy.RUNTIME)
+@Target( {ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,
+        ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR})
+@Documented
+public @interface Price
+{
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
+    String message() default "{com.github.nguyentrucxinh.constraints.Price.message}";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+    // ======================================
+    // =          Inner Annotation          =
+    // ======================================
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target( {ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,
+            ElementType.TYPE, ElementType.ANNOTATION_TYPE,
+            ElementType.CONSTRUCTOR})
+    public @interface List
+    {
+        Price[] value();
+    }
+}
