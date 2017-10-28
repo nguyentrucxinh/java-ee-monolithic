@@ -1,7 +1,7 @@
 package com.github.nguyentrucxinh.web.api;
 
 import com.github.nguyentrucxinh.domain.HelloWorld;
-import com.github.nguyentrucxinh.repository.HelloWorldRepository;
+import com.github.nguyentrucxinh.service.HelloWorldService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import java.util.List;
 public class HelloWorldEndpoint {
 
     @Inject
-    private HelloWorldRepository helloWorldRepository;
+    private HelloWorldService helloWorldService;
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
@@ -43,7 +43,7 @@ public class HelloWorldEndpoint {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public List<HelloWorld> listAll() {
-        return helloWorldRepository.findAll();
+        return helloWorldService.findAll();
     }
 
     @PUT

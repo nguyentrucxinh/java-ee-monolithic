@@ -28,8 +28,28 @@ public class HelloWorldRepositoryImpl implements HelloWorldRepository {
 
     @Override
     public List<HelloWorld> findAll() {
-        List<HelloWorld> list = new ArrayList<>(helloWorlds.size());
-        helloWorlds.forEach((key, value) -> list.add(value));
-        return list;
+        return new ArrayList<>(helloWorlds.values());
+    }
+
+    @Override
+    public HelloWorld findById(Long id) {
+        return helloWorlds.get(id);
+    }
+
+    @Override
+    public Long create(HelloWorld helloWorld) {
+        long third = counter.getAndIncrement();
+        helloWorlds.put(third, new HelloWorld(third, helloWorld.getMessage()));
+        return third;
+    }
+
+    @Override
+    public void update(Long id, HelloWorld helloWorld) {
+        helloWorlds.put(id, new HelloWorld(id, helloWorld.getMessage()));
+    }
+
+    @Override
+    public void delete(Long id) {
+        helloWorlds.remove(id);
     }
 }
